@@ -6,6 +6,5 @@ import (
 )
 
 func RegisterRoles() {
-	resource.RegisterRole(
-	)
+	resource.RegisterRole()
 }
