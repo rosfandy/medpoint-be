@@ -3,9 +3,14 @@ package bootstrap
 
 import (
 	"github.com/sev-2/raiden/pkg/resource"
+	"medpointbe/internal/models"
 )
 
 func RegisterModels() {
 	resource.RegisterModels(
+		&models.DoctorSchedules{},
+		&models.Doctors{},
+		&models.Profiles{},
+		&models.Roles{},
 	)
 }

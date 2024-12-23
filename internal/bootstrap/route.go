@@ -3,17 +3,40 @@ package bootstrap
 
 import (
 	"github.com/sev-2/raiden"
-	"medpointbe/internal/controllers"
+	raiden_controllers "github.com/sev-2/raiden/pkg/controllers"
 	"github.com/valyala/fasthttp"
+	"medpointbe/internal/controllers"
+	"medpointbe/internal/models"
 )
 
 func RegisterRoute(server *raiden.Server) {
 	server.RegisterRoute([]*raiden.Route{
+		raiden.NewRouteFromController(&raiden_controllers.StateReadyController{}, []string{fasthttp.MethodPost}),
 		{
 			Type:       raiden.RouteTypeCustom,
-			Path:       "/hello/{name}",
-			Methods:    []string{fasthttp.MethodGet},
-			Controller: &controllers.HelloWordController{},
+			Path:       "/rest/v1/doctors",
+			Methods:    []string{fasthttp.MethodGet, fasthttp.MethodPost},
+			Controller: &controllers.DoctorController{},
+			Model:      models.Doctors{},
+		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/doctors/{id}",
+			Methods:    []string{fasthttp.MethodPatch, fasthttp.MethodDelete},
+			Controller: &controllers.DoctorControllerIds{},
+			Model:      models.Doctors{},
+		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/schedules",
+			Methods:    []string{fasthttp.MethodGet, fasthttp.MethodPost},
+			Controller: &controllers.SchedulesController{},
+		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/schedules/{id}",
+			Methods:    []string{fasthttp.MethodPatch, fasthttp.MethodDelete},
+			Controller: &controllers.SchedulesControllerIds{},
 		},
 	})
 }
