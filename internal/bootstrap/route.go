@@ -6,6 +6,7 @@ import (
 	raiden_controllers "github.com/sev-2/raiden/pkg/controllers"
 	"github.com/valyala/fasthttp"
 	"medpointbe/internal/controllers"
+	"medpointbe/internal/models"
 )
 
 func RegisterRoute(server *raiden.Server) {
@@ -16,6 +17,20 @@ func RegisterRoute(server *raiden.Server) {
 			Path:       "/hello/{name}",
 			Methods:    []string{fasthttp.MethodGet},
 			Controller: &controllers.HelloWordController{},
+		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/doctors",
+			Methods:    []string{fasthttp.MethodGet, fasthttp.MethodPost},
+			Controller: &controllers.DoctorController{},
+			Model:      models.Doctors{},
+		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/doctors/{id}",
+			Methods:    []string{fasthttp.MethodPatch, fasthttp.MethodDelete},
+			Controller: &controllers.DoctorControllerIds{},
+			Model:      models.Doctors{},
 		},
 	})
 }
