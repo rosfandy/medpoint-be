@@ -4,7 +4,7 @@ import (
 	"github.com/sev-2/raiden"
 )
 
-type HelloWordRequest struct { // Add your request data 
+type HelloWordRequest struct {
 }
 
 type HelloWordResponse struct {
@@ -13,9 +13,9 @@ type HelloWordResponse struct {
 
 type HelloWordController struct {
 	raiden.ControllerBase
-	Http	string `path:"/hello/{name}" type:"custom"`
-	Payload	*HelloWordRequest
-	Result	HelloWordResponse
+	Http    string `path:"/hello/{name}" type:"custom"`
+	Payload *HelloWordRequest
+	Result  HelloWordResponse
 }
 
 func (c *HelloWordController) Get(ctx raiden.Context) error {

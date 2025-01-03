@@ -3,12 +3,14 @@ package bootstrap
 
 import (
 	"github.com/sev-2/raiden"
-	"medpointbe/internal/controllers"
+	raiden_controllers "github.com/sev-2/raiden/pkg/controllers"
 	"github.com/valyala/fasthttp"
+	"medpointbe/internal/controllers"
 )
 
 func RegisterRoute(server *raiden.Server) {
 	server.RegisterRoute([]*raiden.Route{
+		raiden.NewRouteFromController(&raiden_controllers.StateReadyController{}, []string{fasthttp.MethodPost}),
 		{
 			Type:       raiden.RouteTypeCustom,
 			Path:       "/hello/{name}",

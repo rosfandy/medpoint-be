@@ -3,9 +3,14 @@ package bootstrap
 
 import (
 	"github.com/sev-2/raiden/pkg/resource"
+	"medpointbe/internal/roles"
 )
 
 func RegisterRoles() {
 	resource.RegisterRole(
+		&roles.Admin{},
+		&roles.Doctor{},
+		&roles.SuperAdmin{},
+		&roles.User{},
 	)
 }
