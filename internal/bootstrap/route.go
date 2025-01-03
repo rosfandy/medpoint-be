@@ -32,5 +32,19 @@ func RegisterRoute(server *raiden.Server) {
 			Controller: &controllers.DoctorControllerIds{},
 			Model:      models.Doctors{},
 		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/schedules",
+			Methods:    []string{fasthttp.MethodGet, fasthttp.MethodPost},
+			Controller: &controllers.ScheduleController{},
+			Model:      models.DoctorSchedules{},
+		},
+		{
+			Type:       raiden.RouteTypeCustom,
+			Path:       "/rest/v1/schedules/{id}",
+			Methods:    []string{fasthttp.MethodPatch, fasthttp.MethodDelete},
+			Controller: &controllers.ScheduleControllerIds{},
+			Model:      models.DoctorSchedules{},
+		},
 	})
 }

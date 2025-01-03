@@ -1,9 +1,10 @@
 package models
 
 import (
+	"time"
+
 	"github.com/google/uuid"
 	"github.com/sev-2/raiden/pkg/db"
-	"time"
 )
 
 type DoctorSchedules struct {
